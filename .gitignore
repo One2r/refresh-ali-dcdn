@@ -21,6 +21,8 @@
 go.work
 
 refresh-ali-dcdn
-refresh-ali-dcdn.x86_64
+refresh-ali-dcdn.unix
 refresh-ali-dcdn.arm64
+refresh-ali-dcdn.darwin
+refresh-ali-dcdn.exe
 .idea
