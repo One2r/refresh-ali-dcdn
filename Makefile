@@ -1,6 +1,6 @@
 # Go parameters
 GOCMD=go
-GOBUILD=$(GOCMD) build
+GOBUILD=$(GOCMD) build -ldflags "-s -w"
 GOCLEAN=$(GOCMD) clean
 BINARY_NAME=refresh-ali-dcdn
 BINARY_DARWIN=$(BINARY_NAME).darwin
@@ -20,10 +20,10 @@ clean:
 
 # Cross compilation
 build-darwin:
-		CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 $(GOBUILD) -o $(BINARY_DARWIN) -v
+		CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 $(GOBUILD) -o $(BINARY_DARWIN) -v && upx -9 $(BINARY_DARWIN)
 build-unix:
-		CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -o $(BINARY_UNIX) -v
+		CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -o $(BINARY_UNIX) -v && upx -9 $(BINARY_UNIX)
 build-arm64:
-		CGO_ENABLED=0 GOOS=linux GOARCH=arm64 $(GOBUILD) -o $(BINARY_ARM) -v
+		CGO_ENABLED=0 GOOS=linux GOARCH=arm64 $(GOBUILD) -o $(BINARY_ARM) -v && upx -9 $(BINARY_ARM)
 build-win:
-		CGO_ENABLED=0 GOOS=windows GOARCH=amd64 $(GOBUILD) -o $(BINARY_WIN) -v
+		CGO_ENABLED=0 GOOS=windows GOARCH=amd64 $(GOBUILD) -o $(BINARY_WIN) -v && upx -9 $(BINARY_WIN)
